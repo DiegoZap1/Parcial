@@ -11,9 +11,11 @@ tomando en cuenta los datos del cliente.
 
 import os
 
+# Funcion para limpiar la consola del sistema
 def limpiar_consola():
     os.system('cls' if os.name == 'nt' else 'clear')
 
+# Se creo una clase vehiculo para registrar los que vayan ingresando
 class NuevoVehiculo():
     def __init__(self,placa,marca,modelo,año,clase,transmision,color,motor,chasis,precio_renta):
         self.placa = placa
@@ -29,7 +31,7 @@ class NuevoVehiculo():
         self.chasis = chasis
         self.precio_renta = precio_renta
 
-    
+    # Funcion que muestra la información del carro a ingresar
     def mostrarinfo(self):
         tipo = ["Placa: ","Marca: ","Modelo: ","Año: ","Clase: ","Asientos: ",
                 "Ruedas: ","Transmision: ","Color: ","Motor: ","Chasis: ","Precio: $"]
@@ -39,6 +41,7 @@ class NuevoVehiculo():
         for i in range(1,len(lista)+1):
             print(f"{tipo[i-1]}{lista[i-1]}")
 
+# Se crea la clase Vehiculos para rentarlos
 class Vehiculos():
     def __init__(self,placa,marca,modelo,año,pais,clase,transmision,color,motor,chasis,precio_renta):
         self.placa = placa
@@ -55,6 +58,7 @@ class Vehiculos():
         self.chasis = chasis
         self.precio_renta = precio_renta
     
+    # Funcion que muestra la información del carro a rentar
     def mostrarinfo(self):
         tipo = ["Placa: ","Marca: ","Modelo: ","Año: ","Pais: ","Clase: ","Asientos: ",
                 "Ruedas: ","Transmision: ","Color: ","Motor: ","Chasis: ","Precio: $"]
@@ -65,6 +69,7 @@ class Vehiculos():
             print(f"{tipo[i-1]}{lista[i-1]}")
         print("==============================================")
 
+# Funcion de menu para dar a elegir al usuario una acción
 def menu():
     limpiar_consola()
     print("========= Menu ========")
@@ -79,6 +84,7 @@ def menu():
     else:
         print("Opcion no valida")
 
+# Funcion para entrada de datos de nuevos vehiculos
 def nuevoVehiculo():
     limpiar_consola()
     placa = input("Numero de placa: ")
@@ -96,6 +102,7 @@ def nuevoVehiculo():
     nuevo.mostrarinfo()
     print("==============================================")
 
+# Funcion para ingresar datos de carro a rentar
 def rentarVehiculo():
     limpiar_consola()
     placa = input("Numero de placa: ")

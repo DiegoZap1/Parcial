@@ -17,10 +17,12 @@ import os
 def limpiar_consola():
     os.system('cls' if os.name == 'nt' else 'clear')
 
+# Crearemos una clase de extras que ira en conjunto con la habitacion
 class extra():
     def __init__(self,numeroextra):
         self.numeroextra = numeroextra
         self.extras = self.definir_Extra()
+        self.costo_extra = self.definir_costo_extra()
     
     def definir_Extra(self):
         if self.numeroextra == 0:
@@ -29,7 +31,16 @@ class extra():
             return "Piscina"
         elif self.numeroextra == 2:
             return "Cancha de golf"
+        
+    def definir_costo_extra(self):
+        if self.numeroextra == 0:
+            return 0
+        elif self.numeroextra == 1:
+            return 5
+        elif self.numeroextra == 2:
+            return 10
 
+# La clase habitación hereda a extra para así obtener sus atributos
 class habitacion(extra):
     def __init__(self,numero,fecha_entrada,fecha_salida, numeroextra):
         super().__init__(numeroextra)
@@ -41,11 +52,11 @@ class habitacion(extra):
     
     def definir_costo(self):
         if self.numero == 1:
-            return "$50"
+            return 50
         elif self.numero == 2:
-            return "$75"
+            return 75
         elif self.numero == 3:
-            return "$100"
+            return 100
         else:
             print("Opcion no valida")
     
@@ -59,6 +70,7 @@ class habitacion(extra):
         else:
             print("Opcion no valida")
 
+# Se crea una clase de clientes que heredara a la clase habitacion
 class cliente(habitacion):
     def __init__(self,nombre, apellido, telefono, dui, nhuespedes, n_noches, numero, fecha_entrada, fecha_salida, numeroextra):
         super().__init__(numero, fecha_entrada, fecha_salida, numeroextra)
@@ -69,6 +81,7 @@ class cliente(habitacion):
         self.nhuespedes = nhuespedes
         self.n_noches = n_noches
         
+# la clase factura generara una factura para el alquiler de la habitacion
 class factura(cliente):
     def __init__(self, nombre, apellido, telefono, dui, nhuespedes, n_noches, numero, fecha_entrada, fecha_salida, numeroextra):
         super().__init__(nombre, apellido, telefono, dui, nhuespedes, n_noches, numero, fecha_entrada, fecha_salida, numeroextra)
@@ -87,10 +100,13 @@ class factura(cliente):
         for i in range(1,len(self.habitacion)+1):
             print(f"{self.habitacion[i-1]}")
         print("================================")
+        print(f"Precio Total: ${self.costo + self.costo_extra}")
+
+# Por ultimo se crean 2 listas para mostrar información y una funcion para registrar información
 
 habitacion_huesped = ["1. Habitacion individual $50","2. Habitacion doble $75","3. Habitación cuadruple $100"]
 extras = ["0. Ninguna","1. Piscina $5","2. Cancha de golf $10"]    
-    
+
 def genfactura():
     limpiar_consola()
     for i in range(1,len(habitacion_huesped)+1):
