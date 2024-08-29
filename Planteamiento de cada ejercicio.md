@@ -1,3 +1,9 @@
+Integrantes:
+Diego Alexander Zapata López SMSS013123 
+Jose Luis Escobar Caceres SMSS012223
+
+
+
 1) Sistema de Gestión de Pacientes
 Planteamiento:
 Este código tiene como objetivo gestionar un consultorio médico, permitiendo registrar pacientes, verificar si ya tienen una consulta previa y asignar fechas de consulta.
